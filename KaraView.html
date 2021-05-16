@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kara view</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="./app.js"></script>
+    <script src="./node_modules/@fortawesome/fontawesome-free/js/all.js"></script>
+
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <style>
+        .text-left {
+            text-align: left !important;
+        }
+
+        .text-right {
+            text-align: right !important;
+        }
+
+        #container-wrapper {
+            background: black;
+        }
+
+        #panel-music-control {
+            background: black;
+        }
+
+        #lyric-container {
+            /*overflow-y: auto;*/
+            overflow-x: hidden;
+        }
+
+        .default {
+            font-weight: 400;
+            font-size: 12px;
+            /*color: white !important;*/
+            opacity: 0.83;
+        }
+
+        .text-red {
+            color: red;
+        }
+
+        .animation .word {
+            animation-name: pulse;
+            animation-timing-function: linear;
+            animation-delay: 0s;
+            animation-direction: normal;
+            animation-fill-mode: none;
+            animation-play-state: running;
+        }
+
+        .word {
+            background: black;
+            color: white;
+        }
+
+        .word .word-inner {
+            background: black;
+            color: white;
+        }
+
+        .highlight .word .word-inner {
+            mix-blend-mode: multiply;
+        }
+
+        .default .word {
+            background: black;
+        }
+
+        .highlight {
+            font-weight: 700;
+            font-size: 14px;
+            opacity: 0.83;
+        }
+
+        .highlight .word {
+            background: linear-gradient(red, red) #ffffff no-repeat 0 0;
+            background-size: 0 100%;
+        }
+
+        .music-line {
+            padding: 0 10px;
+            background: linear-gradient(red, red) #ffffff no-repeat 0 0;
+        }
+
+        @keyframes pulse {
+            to {
+                background-size: 100% 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="container-wrapper" class="row align-items-center">
+    <div id="panel-left" class="col-md-3 text-center pt-5">
+        <div class="w-100"></div>
+    </div>
+    <div id="lyric-wrapper" class="col-md-6 text-center py-5">
+        <div id="lyric-container" class="overflow-hidden" style="max-height: 380px">
+            <div id="container"></div>
+        </div>
+        <div class="highlight my-3">
+            <div class="row align-items-center">
+                <div class="col-md-2">
+                    <div class="w-100">
+                        <div class="text-right text-white"><span id="current-time" style="opacity: 0.83">0:00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-8 position-relative">
+                    <div id="music-dot" class="position-absolute" style="top: -9px; left: 0">
+                        <span class="text-red"><i class="fas fa-circle"></i></span>
+                    </div>
+                    <div id="music-line" class="music-line" style="height: 5px!important; background-size: 0">
+                        <div class="w-100"></div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="w-100">
+                        <div class="text-left text-white" style="opacity: 0.83"><span id="total-time">0:00</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+
+    </div>
+    <div id="panel-right" class="col-md-3 text-center pt-5">
+        <div class="w-100"></div>
+    </div>
+</div>
+
+<script>
+    $('#container').html(parseLyric(lyricData));
+</script>
+</body>
+</html>
